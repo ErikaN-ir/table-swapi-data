@@ -15,7 +15,14 @@ function getData(type, cb) { /*cb is the argument of getData*/
 };
 
 function writeToDocument(type) { /*type meaning people, planets, spaceships, etc */
+    var el = document.getElementById("data");
+    el.innerHTML = ""; /*each time button is pressed resets to nothing */
+
     getData(type, function(data) {
-        document.getElementById("data").innerHTML = data;
-    });
+        data = data.results
+
+        data.forEach(function(item) { /*for each element in data*/
+            document.getElementById("data").innerHTML += "<p>"+ item.name + "</p>";
+        })
+        });
 }
