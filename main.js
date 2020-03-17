@@ -25,6 +25,7 @@ function getTableHeaders(obj) { /*Taking in a single object - obj */
 }
 
 function writeToDocument(type) { /*type meaning people, planets, spaceships, etc */
+    var tableRows = [];
     var el = document.getElementById("data");
     el.innerHTML = ""; /*each time button is pressed resets to nothing */
 
@@ -37,8 +38,15 @@ function writeToDocument(type) { /*type meaning people, planets, spaceships, etc
             /*Object.keys(item).forEach(function(key) {
                 console.log(key);*/
             
+            var dataRow =[];
 
-            el.innerHTML = `<table>${tableHeaders}</table>`;
+            Object.keys(item).forEach(function(key){
+                dataRow.push(`<td>${item[key]}</td>`);
+            });
+            tableRows.push(dataRow);
+
         });
+        el.innerHTML = `<table>${tableHeaders}${tableRows}</table>`;
+        
     });
 };
