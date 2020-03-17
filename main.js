@@ -62,7 +62,7 @@ function writeToDocument(url) { /*type meaning people, planets, spaceships, etc 
             tableRows.push(`<tr>${dataRow}</tr>`);
 
         });
-        el.innerHTML = `<table>${tableHeaders}${tableRows}</table>${pagination}`;
+        el.innerHTML = `<table>${tableHeaders}${tableRows}</table>${pagination}`.replace(/,/g, "");/*between the // is what is being searched for and g means find all instances. Replace with empty string */
         
     });
 };
