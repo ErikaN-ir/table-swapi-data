@@ -1,8 +1,10 @@
-function getData(cb) { /*cb is the argument of getData*/
+const baseURL = "https://swapi.co/api/";
+
+function getData(type, cb) { /*cb is the argument of getData*/
     var xhr = new XMLHttpRequest();
 /*JS in-built object to consume APIs*/
 
-    xhr.open("GET", "https://swapi.co/api/");
+    xhr.open("GET", baseURL + type + "/");
     xhr.send();
 
     xhr.onreadystatechange = function() {
@@ -12,8 +14,8 @@ function getData(cb) { /*cb is the argument of getData*/
     };
 };
 
-function printDataToConsole(data) { /*data is argument fed as a result of getData*/
-    console.log(data);
+function writeToDocument(type) { /*type meaning people, planets, spaceships, etc */
+    getData(type, function(data) {
+        document.getElementById("data").innerHTML = data;
+    });
 }
-
-getData(printDataToConsole); /*feeding cb into this print function as an argument*/
