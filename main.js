@@ -14,15 +14,31 @@ function getData(type, cb) { /*cb is the argument of getData*/
     };
 };
 
+function getTableHeaders(obj) { /*Taking in a single object - obj */
+    var tableHeaders = []; /*initialising as an empty array */
+
+    Object.keys(obj).forEach(function(key) {
+        tableHeaders.push(`<td>${key}</td>`);
+    });
+
+    return `<tr>${tableHeaders}</tr>`;
+}
+
 function writeToDocument(type) { /*type meaning people, planets, spaceships, etc */
     var el = document.getElementById("data");
     el.innerHTML = ""; /*each time button is pressed resets to nothing */
 
     getData(type, function(data) {
-        data = data.results
+        data = data.results;
+        var tableHeaders = getTableHeaders(data[0]);
 
         data.forEach(function(item) { /*for each element in data*/
-            document.getElementById("data").innerHTML += "<p>"+ item.name + "</p>";
-        })
+            //el.innerHTML += "<p>" + item.name + "</p>";
+            /*Object.keys(item).forEach(function(key) {
+                console.log(key);*/
+            
+
+            el.innerHTML = `<table>${tableHeaders}</table>`;
         });
-}
+    });
+};
